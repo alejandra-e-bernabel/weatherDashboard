@@ -29,3 +29,7 @@ body {
 .dashboard {
     color: rgb(17, 215, 255);
 }
+
+.citySearchContainer {
+    padding: 5px;
+}

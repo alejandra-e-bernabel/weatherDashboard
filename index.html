@@ -25,6 +25,31 @@
 
     </header>
 
+    <div class="container">
+        <div class="row">
+            <!-- anything small or above will have columns of size 3. 
+            Anything xs will stack automatically. -->
+          <div class="col-sm-3" style="background-color:yellow;">
+            <form>
+                <div class="citySearchContainer form-group"></div>
+                    <label for="cityWeather">Search for a city</label>
+                    <input type="text" class="form-control" id="cityWeather" aria-describedby="cityWeather" placeholder="Orlando">
+
+            </form>
+          </div>
+
+            <div class="col-sm-9" style="background-color:pink;">
+                <!-- empty div that will hold city name, date, curr weather, temp, and humidity -->
+                <div class="cityInfo" id="cityInfo"></dib>
+               
+                <!-- empty div that will hold weatherforecast -->
+                <div class="weatherForecast" id="forecast"></div>
+            </div>
+
+
+        </div>
+      </div>
+
 
 
     <script src="script.js"></script>
