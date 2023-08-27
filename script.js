@@ -9,8 +9,8 @@ function getLatLong (cityEntered) {
     })
 
     .then (function (data){
-        console.log ("longitude is " + data[0].lon);
-        console.log ("latitude is " + data[0].lat);
+        // console.log ("longitude is " + data[0].lon);
+        // console.log ("latitude is " + data[0].lat);
 
         getWeather(data[0].lat, data[0].lon);
     });
@@ -19,12 +19,11 @@ function getLatLong (cityEntered) {
 function getWeather(lat, lon) {
     //open weather needs lat, lon, and API key.
 
-    console.log ("longitude is " + lon);
-    console.log ("latitude is " + lat);
+    // console.log ("longitude is " + lon);
+    // console.log ("latitude is " + lat);
 
-    // let requestURL = "api.openweathermap.org/data/2.5/forecast?lat="+ lat + "&lon=" + lon + "&appid=ca007cce6aac096fab36f61f7e4396a9";
-    let requestURL = "http://api.openweathermap.org/data/2.5/forecast?lat=" + lat + "&lon=" + lon + "&appid=ca007cce6aac096fab36f61f7e4396a9";
-    console.log(requestURL);
+    let requestURL = "http://api.openweathermap.org/data/2.5/forecast?lat=" + lat + "&lon=" + lon + "&appid=ca007cce6aac096fab36f61f7e4396a9&units=imperial";
+    // console.log(requestURL);
 
     fetch(requestURL)
     .then (function (response){
@@ -33,6 +32,8 @@ function getWeather(lat, lon) {
     
     .then (function (data){
         console.log(data);
+        printDayData(data, 0);
+        
     })
 
     .catch (error => {
@@ -42,24 +43,24 @@ function getWeather(lat, lon) {
 
 fetchButton.addEventListener("click", function () {
     let location = document.getElementById("cityWeather");
-    console.log(location.value);
+    // console.log(location.value);
     getLatLong(location.value);
 });
 
-// function exampleWeatherSearch () {
-//     // let requestURL = "api.openweathermap.org/data/2.5/forecast?lat=" + lat + "&lon=" + lon + "&appid=ca007cce6aac096fab36f61f7e4396a9";
-//     // console.log(requestURL);
 
-//     fetch("http://api.openweathermap.org/data/2.5/forecast?lat=44.34&lon=10.99&appid=ca007cce6aac096fab36f61f7e4396a9")
-//     .then (function (response){
-//         return response.json();
-//     })
-    
-//     .then (function (data){
-//         console.log(data);
-//     })
+function printDayData (data, i) {
+    console.log ("Temperature: " + data.list[i].main.temp + "\u00b0 F");
+    console.log ("Humidity: " + data.list[i].main.humidity + "%");
+    console.log ("Lowest Temp: " + data.list[i].main.temp_min + "\u00b0 F");
+    console.log ("Highest Temp: " + data.list[i].main.temp_max + "\u00b0 F");
+    console.log ("Wind Speed: " + data.list[i].wind.speed + "mph");
+    console.log ("City: " + data.city.name);
+    console.log (data.list[i].dt_txt);
+    console.log ("Icon: " + data.list[i].weather[i].icon);
 
-//     .catch (error => {
-//         console.log ("There was an error and location weather information was not retrieved.");
-//     });
-// }
+
+
+
+
+
+}
