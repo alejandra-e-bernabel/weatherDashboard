@@ -35,6 +35,9 @@
                     <label for="cityWeather">Search for a city</label>
                     <input type="text" class="form-control" id="cityWeather" aria-describedby="cityWeather" placeholder="Orlando">
                 <br>
+                <p class="warningMessage hidden" id="warningMessage">
+                    Please enter a city name.
+                </p>
                 <button type="button" id="fetchButton" class="form-control btn btn-warning">See City Weather</button>
 
             </form>
@@ -42,7 +45,7 @@
 
             <div class="col-sm-9" style="background-color:pink;">
                 <!-- empty div that will hold city name, date, curr weather, temp, and humidity -->
-                <div class="cityInfo" id="cityInfo"></dib>
+                <div class="cityInfo" id="cityInfo"></div>
                
                 <!-- empty div that will hold weatherforecast -->
                 <div class="weatherForecast" id="forecast"></div>

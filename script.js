@@ -1,6 +1,12 @@
+//importing elements
 var fetchButton = document.getElementById("fetchButton");
 var weatherKey = config.weatherKey;
+var cityInfo = document.getElementById("cityInfo");
+var forecastContainer = document.getElementById("forecast");
+var warningMessage = document.getElementById ("warningMessage");
 
+
+//changes user input from city name to lat and lon, then calls getWeather
 function getLatLong (cityEntered) {
     let latLongUrl = "http://api.openweathermap.org/geo/1.0/direct?q=" + cityEntered + "&limit=1&appid=" + weatherKey;
 
@@ -17,6 +23,7 @@ function getLatLong (cityEntered) {
     });
 }
 
+//retrieves weather information
 function getWeather(lat, lon) {
     //open weather needs lat, lon, and API key.
 
@@ -42,10 +49,20 @@ function getWeather(lat, lon) {
     });
 }
 
+//when user puts in a location, 
 fetchButton.addEventListener("click", function () {
-    let location = document.getElementById("cityWeather");
-    // console.log(location.value);
-    getLatLong(location.value);
+    if (document.getElementById("cityWeather").value != "") {
+        if (!warningMessage.classList.contains("hidden")) {
+            warningMessage.classList.add("hidden");
+        }
+        let location = document.getElementById("cityWeather");
+        // console.log(location.value);
+        getLatLong(location.value);
+
+    } else {
+        warningMessage.classList.remove("hidden");
+    }
+    
 });
 
 
@@ -58,10 +75,7 @@ function printDayData (data, i) {
     console.log ("City: " + data.city.name);
     console.log (data.list[i].dt_txt);
     console.log ("Icon: " + data.list[i].weather[i].icon);
-
-
-
-
-
-
 }
+
+//initial population
+getLatLong("Orlando");

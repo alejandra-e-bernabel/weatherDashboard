@@ -33,3 +33,11 @@ body {
 .citySearchContainer {
     padding: 5px;
 }
+
+.warningMessage {
+    color: red;
+}
+
+.hidden {
+    display: none;
+}
