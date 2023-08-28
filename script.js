@@ -1,7 +1,8 @@
 var fetchButton = document.getElementById("fetchButton");
+var weatherKey = config.weatherKey;
 
 function getLatLong (cityEntered) {
-    let latLongUrl = "http://api.openweathermap.org/geo/1.0/direct?q=" + cityEntered + "&limit=1&appid=ca007cce6aac096fab36f61f7e4396a9";
+    let latLongUrl = "http://api.openweathermap.org/geo/1.0/direct?q=" + cityEntered + "&limit=1&appid=" + weatherKey;
 
     fetch (latLongUrl)
     .then (function (response) {
@@ -22,7 +23,7 @@ function getWeather(lat, lon) {
     // console.log ("longitude is " + lon);
     // console.log ("latitude is " + lat);
 
-    let requestURL = "http://api.openweathermap.org/data/2.5/forecast?lat=" + lat + "&lon=" + lon + "&appid=ca007cce6aac096fab36f61f7e4396a9&units=imperial";
+    let requestURL = "http://api.openweathermap.org/data/2.5/forecast?lat=" + lat + "&lon=" + lon + "&appid=" + weatherKey + "&units=imperial";
     // console.log(requestURL);
 
     fetch(requestURL)
