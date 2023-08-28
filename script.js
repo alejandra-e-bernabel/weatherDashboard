@@ -4,6 +4,7 @@ var weatherKey = config.weatherKey;
 var cityInfo = document.getElementById("cityInfo");
 var forecastContainer = document.getElementById("forecast");
 var warningMessage = document.getElementById ("warningMessage");
+var cityInfoEl = document.getElementById ("cityInfo");
 
 
 //changes user input from city name to lat and lon, then calls getWeather
@@ -74,7 +75,68 @@ function printDayData (data, i) {
     console.log ("Wind Speed: " + data.list[i].wind.speed + "mph");
     console.log ("City: " + data.city.name);
     console.log (data.list[i].dt_txt);
+
+    let date= data.list[i].dt_txt;
+    let dateYear = date.substring(0,4);
+    console.log(dateYear);
+
+    let dateMonth = date.substring(6,7);
+    console.log(dateMonth);
+
+    // changes date to spelled out month
+    switch (dateMonth) {
+        case "1":
+            dateMonth = "January";
+            break;
+        case "2":
+            dateMonth = "February";
+            break;
+        case "3":
+            dateMonth = "March";
+            break;
+        case "4":
+            dateMonth = "April";
+            break;
+        case "5":
+            dateMonth = "May";
+            break;
+        case "6":
+            dateMonth = "June";
+            break;
+        case "7":
+            dateMonth = "July";
+            break;
+        case "8":
+            dateMonth = "August";
+            break;
+        case "9":
+            dateMonth = "September";
+            break;
+        case "10":
+            dateMonth = "October";
+            break;
+        case "11":
+            dateMonth = "November";
+            break;
+        case "12":
+            dateMonth = "December";
+            break;   
+    }
+    console.log (dateMonth);
+
+    let dateDay = date.substring(8,10);
+    console.log(dateDay);
+
+
     console.log ("Icon: " + data.list[i].weather[i].icon);
+
+    cityInfo.innerHTML = "<h1>" + data.city.name + "</h1>";
+    cityInfo.innerHTML +="<h4>" + dateMonth + " " + dateDay + ", " + dateYear + "</h4>";
+    cityInfo.innerHTML += "<p>Current temperature: " + data.list[i].main.temp + "\u00b0F</p>";
+    cityInfo.innerHTML += "<p>Humidity: " + data.list[i].main.humidity + "%</p>";
+    cityInfo.innerHTML += ("<p>Today's Low: " + data.list[i].main.temp_min + "\u00b0 F</p>");
+    cityInfo.innerHTML += ("<p>Today's High: " + data.list[i].main.temp_max + "\u00b0 F</p>");
+
 }
 
 //initial population
