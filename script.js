@@ -74,14 +74,11 @@ function printDayData (data, i) {
     console.log ("Highest Temp: " + data.list[i].main.temp_max + "\u00b0 F");
     console.log ("Wind Speed: " + data.list[i].wind.speed + "mph");
     console.log ("City: " + data.city.name);
-    console.log (data.list[i].dt_txt);
 
+    console.log (data.list[i].dt_txt);
     let date= data.list[i].dt_txt;
     let dateYear = date.substring(0,4);
-    console.log(dateYear);
-
     let dateMonth = date.substring(6,7);
-    console.log(dateMonth);
 
     // changes date to spelled out month
     switch (dateMonth) {
@@ -122,22 +119,52 @@ function printDayData (data, i) {
             dateMonth = "December";
             break;   
     }
-    console.log (dateMonth);
 
     let dateDay = date.substring(8,10);
-    console.log(dateDay);
-
 
     console.log ("Icon: " + data.list[i].weather[i].icon);
 
-    cityInfo.innerHTML = "<h1>" + data.city.name + "</h1>";
+    cityInfo.innerHTML = "<div class=\"cityHeader\" id=cityHeader></div>";
+
+    const img = document.createElement("img");
+    img.src = "https://openweathermap.org/img/wn/" + data.list[i].weather[i].icon + ".png";
+    document.getElementById("cityHeader").append(img);
+
+    document.createElement("h1");
+    document.getElementById("cityHeader").innerHTML += "<h1>" + data.city.name + "</h1>";
+
     cityInfo.innerHTML +="<h4>" + dateMonth + " " + dateDay + ", " + dateYear + "</h4>";
-    cityInfo.innerHTML += "<p>Current temperature: " + data.list[i].main.temp + "\u00b0F</p>";
+    cityInfo.innerHTML += "<p>Current temperature: " + data.list[i].main.temp + "\u00b0 F</p>";
+    cityInfo.innerHTML += "<p>Feels like: " + data.list[i].main.feels_like + "\u00b0 F</p>";
     cityInfo.innerHTML += "<p>Humidity: " + data.list[i].main.humidity + "%</p>";
     cityInfo.innerHTML += ("<p>Today's Low: " + data.list[i].main.temp_min + "\u00b0 F</p>");
     cityInfo.innerHTML += ("<p>Today's High: " + data.list[i].main.temp_max + "\u00b0 F</p>");
 
+    
+
+}
+
+function getIcon (data, i) {
+
+    let icon = data.list[i].weather[i].icon;
+    let iconUrl = "";
+    switch (data.icon) {
+        case "01d": //clear sky, day
+            iconUrl = "https://openweathermap.org/img/wn/01d@2x.png"
+            break;
+
+        case "02d": //few clouds, day
+            iconUrl = "https://openweathermap.org/img/wn/01d@2x.png"
+            break;
+        
+        
+
+
+
+    }
 }
 
 //initial population
 getLatLong("Orlando");
+
+

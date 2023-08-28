@@ -12,9 +12,6 @@ body {
 .weatherHeader {
     background-color: black;
     padding: 8px;
-
-    
-    
 }
 
 .weatherDashboardContainer {
@@ -40,4 +37,16 @@ body {
 
 .hidden {
     display: none;
+}
+
+.cityHeader {
+    display: flex;
+    /* justify-content: center; */
+    align-items: center;
+    padding-top: 5px;
+
+}
+
+h1 {
+    margin-bottom: 0px;
 }
