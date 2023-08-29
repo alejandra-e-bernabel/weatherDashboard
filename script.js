@@ -64,15 +64,11 @@ fetchButton.addEventListener("click", function () {
         getLatLong(location.value);
 
         //code to store current search object into previous search array.
-        let currHistory = JSON.parse(localStorage.getItem("searchHistory"));
-        console.log("current history is "+ currHistory);
- 
+        let currHistory = JSON.parse(localStorage.getItem("searchHistory")); 
         currHistory.push(location.value);
-
         localStorage.setItem("searchHistory", JSON.stringify(currHistory));
-        console.log("current history is "+ currHistory);
 
-
+        populatePreviousSearches();
 
     } else {
         warningMessage.classList.remove("hidden");
@@ -207,9 +203,36 @@ function getMonth (dateMonth) {
     return dateMonth;
 }
 
+function populatePreviousSearches () {
+    let currHistory = JSON.parse(localStorage.getItem("searchHistory")); 
+
+    document.getElementById("searchHistory").innerHTML = "";
+
+    currHistory.forEach(function(element) {
+        const previousSearchButton = document.createElement("div");
+        previousSearchButton.classList.add("historyButtonContainer");
+        previousSearchButton.innerHTML = "<button type= button class= \"form-control btn btn-info\">" + element + "</button>";
+
+        previousSearchButton.addEventListener("click", function() {
+            getLatLong(element);
+        });
+
+        document.getElementById("searchHistory").append(previousSearchButton);
+    })
+}
+
 //initial population
 getLatLong("Orlando");
-let previousSearches = [];
-localStorage.setItem("searchHistory", JSON.stringify(previousSearches));
+
+if (localStorage.getItem("searchHistory")) {
+    populatePreviousSearches();
+
+} else {
+    let previousSearches = [];
+    localStorage.setItem("searchHistory", JSON.stringify(previousSearches));
+
+}
+
+// populatePreviousSearches();
 
 
