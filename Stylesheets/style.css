@@ -7,7 +7,7 @@
 
 
 body {
-    background-color: rgba(23, 23, 255, 0.435);
+    background-color: rgba(184, 163, 248, 0.314);
 }
 
 .weatherHeader {
@@ -83,4 +83,10 @@ h1 {
 
 .historyButtonContainer {
     padding-bottom: 10px;
+}
+
+.container {
+    width: 100%;
+    max-width: none;
+    
 }

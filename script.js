@@ -95,12 +95,12 @@ function printDayData (data, i) {
 
     let dateDay = date.substring(8,10);
 
-    // console.log ("Icon: " + data.list[i].weather[i].icon);
+    console.log ("Icon: " + data.list[i].weather[0].icon);
 
     cityInfo.innerHTML = "<div class=\"cityHeader\" id=cityHeader></div>";
 
     const img = document.createElement("img");
-    img.src = "https://openweathermap.org/img/wn/" + data.list[i].weather[i].icon + ".png";
+    img.src = "https://openweathermap.org/img/wn/" + data.list[i].weather[0].icon + ".png";
     document.getElementById("cityHeader").append(img);
 
     // document.createElement("h1");
@@ -118,7 +118,7 @@ function printDayData (data, i) {
 
 function printForecastCards (data) {
     //will grab only data indices for future days at 12:00pm.
-    let forecastDays = [5, 13, 21, 29, 37];
+    let forecastDays = [8, 16, 24, 32, 39];
 
     forecastEl.innerHTML = "";
 
@@ -141,10 +141,13 @@ function printForecastCards (data) {
 
         let forecastImg = document.createElement("img");
         forecastImg.src = "https://openweathermap.org/img/wn/" + data.list[forecastDays[i]].weather[0].icon + ".png";
+        console.log ("date and time are " + date);
+        console.log("icon is " + data.list[forecastDays[i]].weather[0].icon + "url is " + forecastImg.src);
 
         //adds image and date to forecastCardHeader
         forecastCardHeader.append(forecastImg);
         forecastCardHeader.innerHTML += "<h5>" + dateMonth + " " + dateDay + ", " + dateYear + "</h5>";
+
         
         forecastCard.innerHTML += "<p>Temperature: " + data.list[forecastDays[i]].main.temp + "\u00b0 F</p>";
         // forecastCard.innerHTML += "<p>Feels like: " + data.list[forecastDays[i]].main.feels_like + "\u00b0 F</p>";
@@ -211,7 +214,7 @@ function populatePreviousSearches () {
     currHistory.forEach(function(element) {
         const previousSearchButton = document.createElement("div");
         previousSearchButton.classList.add("historyButtonContainer");
-        previousSearchButton.innerHTML = "<button type= button class= \"form-control btn btn-info\">" + element + "</button>";
+        previousSearchButton.innerHTML = "<button type= button class= \"form-control btn btn-dark\">" + element + "</button>";
 
         previousSearchButton.addEventListener("click", function() {
             getLatLong(element);
@@ -219,6 +222,15 @@ function populatePreviousSearches () {
 
         document.getElementById("searchHistory").append(previousSearchButton);
     })
+}
+
+
+document.getElementById("clearButton").addEventListener("click", clearSearchHistory);
+
+function clearSearchHistory () {
+    let previousSearches = [];
+    localStorage.setItem("searchHistory", JSON.stringify(previousSearches));
+    populatePreviousSearches();
 }
 
 //initial population
@@ -233,6 +245,5 @@ if (localStorage.getItem("searchHistory")) {
 
 }
 
-// populatePreviousSearches();
 
 

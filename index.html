@@ -32,28 +32,30 @@
         <div class="row">
             <!-- anything small or above will have columns of size 3. 
             Anything xs will stack automatically. -->
-          <div class="col-sm-3" style="background-color:yellow;">
+          <div class="col-sm-3" style="background-color:rgba(176, 248, 255, 0.518);">
             <form>
                 <div class="citySearchContainer form-group"></div>
-                    <label for="cityWeather">Search for a city</label>
+                    <label for="cityWeather"><h3>Search for a city:</h3></label>
                     <input type="text" class="form-control" id="cityWeather" aria-describedby="cityWeather" placeholder="Orlando">
                 <br>
                 <p class="warningMessage hidden" id="warningMessage">
                     Please enter a city name.
                 </p>
-                <button type="button" id="fetchButton" class="form-control btn btn-warning">See City Weather</button>
+                <button type="button" id="fetchButton" class="form-control btn btn-info"><b>See City Weather</b></button>
             </form>
-            
+
                 <hr>
                 <h3>Previous Searches:</h3>
 
                 <!-- empty container to hold previous search buttons -->
                 <div class="searchHistory" id="searchHistory"></div>
 
+                <button type="button" class="btn btn-info form-control" id="clearButton"><b>Clear search history</b></button>
+
             
           </div>
 
-            <div class="col-sm-9" style="background-color:pink;">
+            <div class="col-sm-9">
                 <!-- empty div that will hold city name, date, curr weather, temp, and humidity -->
                 <div class="cityInfo" id="cityInfo"></div>
                
