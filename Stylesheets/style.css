@@ -64,5 +64,13 @@ h1 {
     border-radius: 5px;
     margin: 5px;
 
-    max-width:150px;
+    max-width:200px;
+    
+    /* justify-content: center;
+    align-items: center; */
+}
+
+.forecastCardHeader {
+    display: flex;
+    background-color:  rgb(184, 184, 236);
 }
