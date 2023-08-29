@@ -5,6 +5,7 @@ var cityInfo = document.getElementById("cityInfo");
 var forecastContainer = document.getElementById("forecast");
 var warningMessage = document.getElementById ("warningMessage");
 var cityInfoEl = document.getElementById ("cityInfo");
+var forecastEl = document.getElementById ("forecast");
 
 
 //changes user input from city name to lat and lon, then calls getWeather
@@ -42,6 +43,7 @@ function getWeather(lat, lon) {
     .then (function (data){
         console.log(data);
         printDayData(data, 0);
+        printForecastCards(data);
         
     })
 
@@ -130,37 +132,37 @@ function printDayData (data, i) {
     img.src = "https://openweathermap.org/img/wn/" + data.list[i].weather[i].icon + ".png";
     document.getElementById("cityHeader").append(img);
 
-    document.createElement("h1");
+    // document.createElement("h1");
     document.getElementById("cityHeader").innerHTML += "<h1>" + data.city.name + "</h1>";
 
     cityInfo.innerHTML +="<h4>" + dateMonth + " " + dateDay + ", " + dateYear + "</h4>";
     cityInfo.innerHTML += "<p>Current temperature: " + data.list[i].main.temp + "\u00b0 F</p>";
     cityInfo.innerHTML += "<p>Feels like: " + data.list[i].main.feels_like + "\u00b0 F</p>";
     cityInfo.innerHTML += "<p>Humidity: " + data.list[i].main.humidity + "%</p>";
-    cityInfo.innerHTML += ("<p>Today's Low: " + data.list[i].main.temp_min + "\u00b0 F</p>");
-    cityInfo.innerHTML += ("<p>Today's High: " + data.list[i].main.temp_max + "\u00b0 F</p>");
-
-    
+    cityInfo.innerHTML += "<p>Today's Low: " + data.list[i].main.temp_min + "\u00b0 F</p>";
+    cityInfo.innerHTML += "<p>Today's High: " + data.list[i].main.temp_max + "\u00b0 F</p>";
+    cityInfo.innerHTML += "<p>Wind Speed: " + data.list[i].wind.speed + "mph</p>";
 
 }
 
-function getIcon (data, i) {
+function printForecastCards (data) {
+    //will grab only data indices for future days at 12:00pm.
+    let forecastDays = [5, 13, 21, 29, 37];
 
-    let icon = data.list[i].weather[i].icon;
-    let iconUrl = "";
-    switch (data.icon) {
-        case "01d": //clear sky, day
-            iconUrl = "https://openweathermap.org/img/wn/01d@2x.png"
-            break;
+    for (i=0 ; i<forecastDays.length; i++) {
+        const forecastCard = document.createElement("div");
+        // forecastCard.innerHTML = "<h1>" + data.city.name + "</h1>";
+        // cityInfo.innerHTML ="<h4>" + dateMonth + " " + dateDay + ", " + dateYear + "</h4>";
+        // forecastCard.innerHTML += "<p>Current temperature: " + data.list[forecastDays[i]].main.temp + "\u00b0 F</p>";
+        // forecastCard.innerHTML += "<p>Feels like: " + data.list[forecastDays[i]].main.feels_like + "\u00b0 F</p>";
+        forecastCard.innerHTML += "<p>Humidity: " + data.list[forecastDays[i]].main.humidity + "%</p>";
+        forecastCard.innerHTML += "<p>Low: " + data.list[forecastDays[i]].main.temp_min + "\u00b0 F</p>";
+        forecastCard.innerHTML += "<p>High: " + data.list[forecastDays[i]].main.temp_max + "\u00b0 F</p>";
+        forecastCard.innerHTML += "<p>Wind Speed: " + data.list[forecastDays[i]].wind.speed + "mph</p>";
 
-        case "02d": //few clouds, day
-            iconUrl = "https://openweathermap.org/img/wn/01d@2x.png"
-            break;
-        
-        
+        forecastCard.classList.add("forecastCard");
 
-
-
+        document.getElementById("forecast").appendChild(forecastCard);
     }
 }
 
