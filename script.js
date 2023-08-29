@@ -58,9 +58,21 @@ fetchButton.addEventListener("click", function () {
         if (!warningMessage.classList.contains("hidden")) {
             warningMessage.classList.add("hidden");
         }
+
         let location = document.getElementById("cityWeather");
         // console.log(location.value);
         getLatLong(location.value);
+
+        //code to store current search object into previous search array.
+        let currHistory = JSON.parse(localStorage.getItem("searchHistory"));
+        console.log("current history is "+ currHistory);
+ 
+        currHistory.push(location.value);
+
+        localStorage.setItem("searchHistory", JSON.stringify(currHistory));
+        console.log("current history is "+ currHistory);
+
+
 
     } else {
         warningMessage.classList.remove("hidden");
@@ -111,6 +123,8 @@ function printDayData (data, i) {
 function printForecastCards (data) {
     //will grab only data indices for future days at 12:00pm.
     let forecastDays = [5, 13, 21, 29, 37];
+
+    forecastEl.innerHTML = "";
 
     for (i=0 ; i<forecastDays.length; i++) {
         const forecastCard = document.createElement("div");
@@ -195,5 +209,7 @@ function getMonth (dateMonth) {
 
 //initial population
 getLatLong("Orlando");
+let previousSearches = [];
+localStorage.setItem("searchHistory", JSON.stringify(previousSearches));
 
 
