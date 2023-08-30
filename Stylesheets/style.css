@@ -8,6 +8,7 @@
 
 body {
     background-color: rgba(184, 163, 248, 0.314);
+    
 }
 
 .weatherHeader {
@@ -42,7 +43,7 @@ body {
 
 .cityHeader {
     display: flex;
-    /* justify-content: center; */
+    justify-content: center;
     align-items: center;
     padding-top: 5px;
 
@@ -50,11 +51,13 @@ body {
 
 h1 {
     margin-bottom: 0px;
-}
+    display: flex;
+    justify-content: center;}
 
 .weatherForecast {
     display: flex;
     flex-wrap: wrap;
+    justify-content: center;
 }
 
 .forecastCard {
@@ -88,5 +91,37 @@ h1 {
 .container {
     width: 100%;
     max-width: none;
+    margin: 0px;
     
 }
+
+.cityInfo {
+    background-color: rgba(255, 105, 180, 0.317);
+    /* border-style: solid; */
+    /* border-color: rgb(255, 148, 148); */
+    padding: 15px;
+    margin: 10px;
+    border-radius: 5px;
+
+    /* margin: auto; */
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+
+}
+
+.p {
+    margin-bottom: 4px;
+    /* margin: auto; */
+}
+
+h4 {
+    /* margin: auto; */
+    margin-bottom: 10px;
+}
+
+@media (min-width: 1400px) {
+    .navBar {
+      height: 93vh;
+    }
+  }

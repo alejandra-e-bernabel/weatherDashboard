@@ -107,12 +107,12 @@ function printDayData (data, i) {
     document.getElementById("cityHeader").innerHTML += "<h1>" + data.city.name + "</h1>";
 
     cityInfo.innerHTML +="<h4>" + dateMonth + " " + dateDay + ", " + dateYear + "</h4>";
-    cityInfo.innerHTML += "<p>Current temperature: " + data.list[i].main.temp + "\u00b0 F</p>";
-    cityInfo.innerHTML += "<p>Feels like: " + data.list[i].main.feels_like + "\u00b0 F</p>";
-    cityInfo.innerHTML += "<p>Humidity: " + data.list[i].main.humidity + "%</p>";
-    cityInfo.innerHTML += "<p>Today's Low: " + data.list[i].main.temp_min + "\u00b0 F</p>";
-    cityInfo.innerHTML += "<p>Today's High: " + data.list[i].main.temp_max + "\u00b0 F</p>";
-    cityInfo.innerHTML += "<p>Wind Speed: " + data.list[i].wind.speed + "mph</p>";
+    cityInfo.innerHTML += "<p class=p><b>Current temperature:</b> " + data.list[i].main.temp + "\u00b0 F</p>";
+    cityInfo.innerHTML += "<p class=p><b>Feels like:</b> " + data.list[i].main.feels_like + "\u00b0 F</p>";
+    cityInfo.innerHTML += "<p class=p><b>Humidity:</b> " + data.list[i].main.humidity + "%</p>";
+    cityInfo.innerHTML += "<p class=p><b>Today's Low:</b> " + data.list[i].main.temp_min + "\u00b0 F</p>";
+    cityInfo.innerHTML += "<p class=p><b>Today's High:</b> " + data.list[i].main.temp_max + "\u00b0 F</p>";
+    cityInfo.innerHTML += "<p class=p><b>Wind Speed:</b> " + data.list[i].wind.speed + "mph</p>";
 
 }
 

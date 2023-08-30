@@ -10,13 +10,15 @@
     <!-- google fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400;1,500;1,600&display=swap" rel="stylesheet">
-    
-        <!-- Resetting style and adding my own stylsheet -->
+    <link
+        href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400;1,500;1,600&display=swap"
+        rel="stylesheet">
+
+    <!-- Resetting style and adding my own stylsheet -->
     <link rel="Reset styles" href="./Stylesheets/reset.css">
     <!-- adding my own stylesheet -->
     <link rel="Stylesheet" href="./Stylesheets/style.css">
-         
+
     <title>Weather Dashboard</title>
 </head>
 
@@ -28,21 +30,26 @@
 
     </header>
 
-    <div class="container">
+    <div class="wrapper container">
         <div class="row">
             <!-- anything small or above will have columns of size 3. 
             Anything xs will stack automatically. -->
-          <div class="col-sm-3" style="background-color:rgba(176, 248, 255, 0.518);">
-            <form>
-                <div class="citySearchContainer form-group"></div>
-                    <label for="cityWeather"><h3>Search for a city:</h3></label>
-                    <input type="text" class="form-control" id="cityWeather" aria-describedby="cityWeather" placeholder="Orlando">
-                <br>
-                <p class="warningMessage hidden" id="warningMessage">
-                    Please enter a city name.
-                </p>
-                <button type="button" id="fetchButton" class="form-control btn btn-info"><b>See City Weather</b></button>
-            </form>
+            <div class="navBar col-md-3" style="background-color:rgba(176, 248, 255, 0.518); padding-bottom: 20px; ">
+                
+                <form>
+                    <div class="citySearchContainer form-group"></div>
+                    <label for="cityWeather">
+                        <h3>Search for a city:</h3>
+                    </label>
+                    <input type="text" class="form-control" id="cityWeather" aria-describedby="cityWeather"
+                        placeholder="Orlando">
+                    <br>
+                    <p class="warningMessage hidden" id="warningMessage">
+                        Please enter a city name.
+                    </p>
+                    <button type="button" id="fetchButton" class="form-control btn btn-info"><b>See City
+                            Weather</b></button>
+                </form>
 
                 <hr>
                 <h3>Previous Searches:</h3>
@@ -50,26 +57,30 @@
                 <!-- empty container to hold previous search buttons -->
                 <div class="searchHistory" id="searchHistory"></div>
 
-                <button type="button" class="btn btn-info form-control" id="clearButton"><b>Clear search history</b></button>
+                <button type="button" class="btn btn-info form-control" id="clearButton"><b>Clear search
+                        history</b></button>
 
-            
-          </div>
 
-            <div class="col-sm-9">
-                <!-- empty div that will hold city name, date, curr weather, temp, and humidity -->
-                <div class="cityInfo" id="cityInfo"></div>
-               
-                
-                <div class="forecastContainer" id="forecastContainer">
-                    <h1>5-Day Forecast</h1>
-                    <!-- empty div that will hold weatherforecast -->
-                    <div class="weatherForecast" id="forecast"></div>
+            </div>
+
+            <div class="col-md-9">
+                <div class="row container">
+                    <!-- empty div that will hold city name, date, curr weather, temp, and humidity -->
+                    <div class="col-xxl-3 cityInfo" id="cityInfo"></div>
+
+
+                    <div class="col-xxl-8 forecastContainer" id="forecastContainer">
+                        <h1>5-Day Forecast</h1>
+                        <!-- empty div that will hold weatherforecast -->
+                        <div class="weatherForecast" id="forecast"></div>
+                    </div>
                 </div>
+
             </div>
 
 
         </div>
-      </div>
+    </div>
 
 
     <script type='text/javascript' src='config.js'></script>
