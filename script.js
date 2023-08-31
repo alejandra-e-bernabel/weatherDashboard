@@ -1,6 +1,6 @@
 //importing elements
 var fetchButton = document.getElementById("fetchButton");
-var weatherKey = config.weatherKey;
+// var weatherKey = config.weatherKey;
 var cityInfo = document.getElementById("cityInfo");
 var forecastContainer = document.getElementById("forecast");
 var warningMessage = document.getElementById ("warningMessage");
@@ -32,7 +32,7 @@ function getWeather(lat, lon) {
     // console.log ("longitude is " + lon);
     // console.log ("latitude is " + lat);
 
-    let requestURL = "http://api.openweathermap.org/data/2.5/forecast?lat=" + lat + "&lon=" + lon + "&appid=" + weatherKey + "&units=imperial";
+    let requestURL = "http://api.openweathermap.org/data/2.5/forecast?lat=" + lat + "&lon=" + lon + "&appid=706edb09d7da2e400737ec394e01c5cb&units=imperial";
     // console.log(requestURL);
 
     fetch(requestURL)
