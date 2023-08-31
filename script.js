@@ -10,7 +10,7 @@ var forecastEl = document.getElementById ("forecast");
 
 //changes user input from city name to lat and lon, then calls getWeather
 function getLatLong (cityEntered) {
-    let latLongUrl = "http://api.openweathermap.org/geo/1.0/direct?q=" + cityEntered + "&limit=1&appid=" + weatherKey;
+    let latLongUrl = "http://api.openweathermap.org/geo/1.0/direct?q=" + cityEntered + "&limit=1&appid=706edb09d7da2e400737ec394e01c5cb";
 
     fetch (latLongUrl)
     .then (function (response) {
