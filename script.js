@@ -1,6 +1,5 @@
 //importing elements
 var fetchButton = document.getElementById("fetchButton");
-// var weatherKey = config.weatherKey;
 var cityInfo = document.getElementById("cityInfo");
 var forecastContainer = document.getElementById("forecast");
 var warningMessage = document.getElementById ("warningMessage");
@@ -18,9 +17,6 @@ function getLatLong (cityEntered) {
     })
 
     .then (function (data){
-        // console.log ("longitude is " + data[0].lon);
-        // console.log ("latitude is " + data[0].lat);
-
         getWeather(data[0].lat, data[0].lon);
     });
 }
@@ -28,10 +24,6 @@ function getLatLong (cityEntered) {
 //retrieves weather information
 function getWeather(lat, lon) {
     //open weather needs lat, lon, and API key.
-
-    // console.log ("longitude is " + lon);
-    // console.log ("latitude is " + lat);
-
     let requestURL = "https://api.openweathermap.org/data/2.5/forecast?lat=" + lat + "&lon=" + lon + "&appid=706edb09d7da2e400737ec394e01c5cb&units=imperial";
     console.log(requestURL);
 
@@ -41,7 +33,6 @@ function getWeather(lat, lon) {
     })
     
     .then (function (data){
-        // console.log(data);
         printDayData(data, 0);
         printForecastCards(data);
         
@@ -52,7 +43,7 @@ function getWeather(lat, lon) {
     });
 }
 
-//when user puts in a location, 
+//when user puts in a location, get latitude and longitude and populate the search history
 fetchButton.addEventListener("click", function () {
     if (document.getElementById("cityWeather").value != "") {
         if (!warningMessage.classList.contains("hidden")) {
@@ -60,7 +51,6 @@ fetchButton.addEventListener("click", function () {
         }
 
         let location = document.getElementById("cityWeather");
-        // console.log(location.value);
         getLatLong(location.value);
 
         //code to store current search object into previous search array.
@@ -78,14 +68,6 @@ fetchButton.addEventListener("click", function () {
 
 
 function printDayData (data, i) {
-    // console.log ("Temperature: " + data.list[i].main.temp + "\u00b0 F");
-    // console.log ("Humidity: " + data.list[i].main.humidity + "%");
-    // console.log ("Lowest Temp: " + data.list[i].main.temp_min + "\u00b0 F");
-    // console.log ("Highest Temp: " + data.list[i].main.temp_max + "\u00b0 F");
-    // console.log ("Wind Speed: " + data.list[i].wind.speed + "mph");
-    // console.log ("City: " + data.city.name);
-
-    // console.log (data.list[i].dt_txt);
     let date= data.list[i].dt_txt;
     let dateYear = date.substring(0,4);
     let dateMonth = date.substring(6,7);
@@ -95,15 +77,12 @@ function printDayData (data, i) {
 
     let dateDay = date.substring(8,10);
 
-    // console.log ("Icon: " + data.list[i].weather[0].icon);
-
     cityInfo.innerHTML = "<div class=\"cityHeader\" id=cityHeader></div>";
 
     const img = document.createElement("img");
     img.src = "https://openweathermap.org/img/wn/" + data.list[i].weather[0].icon + ".png";
     document.getElementById("cityHeader").append(img);
 
-    // document.createElement("h1");
     document.getElementById("cityHeader").innerHTML += "<h1>" + data.city.name + "</h1>";
 
     cityInfo.innerHTML +="<h4>" + dateMonth + " " + dateDay + ", " + dateYear + "</h4>";
@@ -141,19 +120,14 @@ function printForecastCards (data) {
 
         let forecastImg = document.createElement("img");
         forecastImg.src = "https://openweathermap.org/img/wn/" + data.list[forecastDays[i]].weather[0].icon + ".png";
-        // console.log ("date and time are " + date);
-        // console.log("icon is " + data.list[forecastDays[i]].weather[0].icon + "url is " + forecastImg.src);
-
+     
         //adds image and date to forecastCardHeader
         forecastCardHeader.append(forecastImg);
         forecastCardHeader.innerHTML += "<h5>" + dateMonth + " " + dateDay + ", " + dateYear + "</h5>";
 
         
         forecastCard.innerHTML += "<p>Temperature: " + data.list[forecastDays[i]].main.temp + "\u00b0 F</p>";
-        // forecastCard.innerHTML += "<p>Feels like: " + data.list[forecastDays[i]].main.feels_like + "\u00b0 F</p>";
         forecastCard.innerHTML += "<p>Humidity: " + data.list[forecastDays[i]].main.humidity + "%</p>";
-        // forecastCard.innerHTML += "<p>Low: " + data.list[forecastDays[i]].main.temp_min + "\u00b0 F</p>";
-        // forecastCard.innerHTML += "<p>High: " + data.list[forecastDays[i]].main.temp_max + "\u00b0 F</p>";
         forecastCard.innerHTML += "<p>Wind Speed: " + data.list[forecastDays[i]].wind.speed + "mph</p>";
 
         forecastCard.classList.add("forecastCard");
