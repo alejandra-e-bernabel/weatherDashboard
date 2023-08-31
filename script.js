@@ -25,7 +25,6 @@ function getLatLong (cityEntered) {
 function getWeather(lat, lon) {
     //open weather needs lat, lon, and API key.
     let requestURL = "https://api.openweathermap.org/data/2.5/forecast?lat=" + lat + "&lon=" + lon + "&appid=706edb09d7da2e400737ec394e01c5cb&units=imperial";
-    console.log(requestURL);
 
     fetch(requestURL)
     .then (function (response){
