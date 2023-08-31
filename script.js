@@ -41,7 +41,7 @@ function getWeather(lat, lon) {
     })
     
     .then (function (data){
-        console.log(data);
+        // console.log(data);
         printDayData(data, 0);
         printForecastCards(data);
         
@@ -78,14 +78,14 @@ fetchButton.addEventListener("click", function () {
 
 
 function printDayData (data, i) {
-    console.log ("Temperature: " + data.list[i].main.temp + "\u00b0 F");
-    console.log ("Humidity: " + data.list[i].main.humidity + "%");
-    console.log ("Lowest Temp: " + data.list[i].main.temp_min + "\u00b0 F");
-    console.log ("Highest Temp: " + data.list[i].main.temp_max + "\u00b0 F");
-    console.log ("Wind Speed: " + data.list[i].wind.speed + "mph");
-    console.log ("City: " + data.city.name);
+    // console.log ("Temperature: " + data.list[i].main.temp + "\u00b0 F");
+    // console.log ("Humidity: " + data.list[i].main.humidity + "%");
+    // console.log ("Lowest Temp: " + data.list[i].main.temp_min + "\u00b0 F");
+    // console.log ("Highest Temp: " + data.list[i].main.temp_max + "\u00b0 F");
+    // console.log ("Wind Speed: " + data.list[i].wind.speed + "mph");
+    // console.log ("City: " + data.city.name);
 
-    console.log (data.list[i].dt_txt);
+    // console.log (data.list[i].dt_txt);
     let date= data.list[i].dt_txt;
     let dateYear = date.substring(0,4);
     let dateMonth = date.substring(6,7);
@@ -95,7 +95,7 @@ function printDayData (data, i) {
 
     let dateDay = date.substring(8,10);
 
-    console.log ("Icon: " + data.list[i].weather[0].icon);
+    // console.log ("Icon: " + data.list[i].weather[0].icon);
 
     cityInfo.innerHTML = "<div class=\"cityHeader\" id=cityHeader></div>";
 
@@ -141,8 +141,8 @@ function printForecastCards (data) {
 
         let forecastImg = document.createElement("img");
         forecastImg.src = "https://openweathermap.org/img/wn/" + data.list[forecastDays[i]].weather[0].icon + ".png";
-        console.log ("date and time are " + date);
-        console.log("icon is " + data.list[forecastDays[i]].weather[0].icon + "url is " + forecastImg.src);
+        // console.log ("date and time are " + date);
+        // console.log("icon is " + data.list[forecastDays[i]].weather[0].icon + "url is " + forecastImg.src);
 
         //adds image and date to forecastCardHeader
         forecastCardHeader.append(forecastImg);
@@ -232,6 +232,16 @@ function clearSearchHistory () {
     localStorage.setItem("searchHistory", JSON.stringify(previousSearches));
     populatePreviousSearches();
 }
+
+let autocomplete;
+function initAutocomplete() {
+    autocomplete = new google.maps.places.Autocomplete(
+        document.getElementById("cityWeather"),
+        {
+            types: ["(cities)"]
+        });
+}
+
 
 //initial population
 getLatLong("Orlando");
